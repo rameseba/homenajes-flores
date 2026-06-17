@@ -14,18 +14,13 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-12">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-sm">
-            <div className="flex items-center gap-2.5">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={identity.logo}
-                alt=""
-                width={36}
-                height={36}
-                className="h-9 w-9 rounded-full object-cover ring-1 ring-hairline"
-              />
-              <span className="font-display text-lg text-ink">{identity.nombre}</span>
-            </div>
-            <p className="mt-3 text-sm leading-relaxed text-muted">{footer.nota}</p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={identity.logo}
+              alt={identity.nombre}
+              className="h-16 w-auto object-contain sm:h-20"
+            />
+            <p className="mt-4 text-sm leading-relaxed text-muted">{footer.nota}</p>
           </div>
 
           <div className="grid grid-cols-2 gap-8 text-sm">
