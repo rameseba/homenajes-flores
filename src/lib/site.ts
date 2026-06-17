@@ -6,7 +6,7 @@ export const site = {
   tagline: "Flores blancas para honrar y acompañar",
   description:
     "Arreglos florales de condolencias y homenaje en Santiago: coronas, cubre urnas, atriles, pies de urna y canastos de rosas blancas. Cotiza con cariño y de forma directa por WhatsApp.",
-  url: "https://homenajesflorales.cl",
+  url: "https://homenajeflorales.cl",
   whatsapp: "56956199315",
   email: "homenajeflorales@gmail.com",
   city: "Santiago, Chile",
