@@ -1,0 +1,215 @@
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import { Flower2, X } from "lucide-react";
+import { useContent } from "@/components/content-provider";
+import { Photo } from "@/components/photo";
+import { WhatsAppButton } from "@/components/whatsapp-button";
+import type { Producto } from "@/lib/content-schema";
+
+const VARIANT_LABELS: { key: keyof Producto["img"]; label: string }[] = [
+  { key: "mostrador", label: "En el lugar" },
+  { key: "blanca", label: "Catálogo" },
+  { key: "real", label: "Foto real" },
+];
+
+function quoteMessage(nombre: string, brand: string) {
+  return `Hola ${brand}, me gustaría cotizar el arreglo "${nombre}". ¿Me ayudan?`;
+}
+
+export function Products() {
+  const { productos, identity } = useContent();
+  const [selected, setSelected] = useState<Producto | null>(null);
+
+  return (
+    <section id="arreglos" data-section="productos" className="scroll-mt-20 bg-white py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-sage-500">
+            Arreglos
+          </span>
+          <h2 className="mt-3 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
+            {productos.titulo}
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-muted">{productos.subtitulo}</p>
+        </div>
+
+        {/* 2×2 en móvil, 3 en tablet, 4 en desktop */}
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+          {productos.items.map((p) => (
+            <ProductCard
+              key={p.id}
+              p={p}
+              brand={identity.nombre}
+              phone={identity.whatsapp}
+              onOpen={() => setSelected(p)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {selected && (
+        <Lightbox
+          p={selected}
+          brand={identity.nombre}
+          phone={identity.whatsapp}
+          onClose={() => setSelected(null)}
+        />
+      )}
+    </section>
+  );
+}
+
+function ProductCard({
+  p,
+  brand,
+  phone,
+  onOpen,
+}: {
+  p: Producto;
+  brand: string;
+  phone: string;
+  onOpen: () => void;
+}) {
+  return (
+    <article className="group flex flex-col overflow-hidden rounded-2xl border border-hairline bg-card transition-shadow hover:shadow-lg hover:shadow-sage-900/5">
+      <button
+        type="button"
+        onClick={onOpen}
+        className="relative block aspect-[4/5] overflow-hidden bg-sage-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-500"
+        aria-label={`Ver fotos de ${p.nombre}`}
+      >
+        <Photo
+          src={p.img.blanca}
+          alt={p.nombre}
+          sizes="(min-width:1024px) 25vw, (min-width:768px) 33vw, 50vw"
+          className="transition-transform duration-700 ease-out group-hover:scale-105"
+        />
+        <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-white/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-sage-700 backdrop-blur">
+          <Flower2 className="h-3 w-3" aria-hidden="true" />
+          {p.rosas} rosas
+        </span>
+      </button>
+
+      <div className="flex flex-1 flex-col p-4">
+        <p className="text-[11px] font-semibold uppercase tracking-wide text-champagne">
+          {p.categoria}
+        </p>
+        <h3 className="mt-1 font-display text-lg leading-snug text-ink">{p.nombre}</h3>
+        <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-muted">
+          {p.descripcion}
+        </p>
+        <div className="mt-4">
+          <WhatsAppButton
+            message={quoteMessage(p.nombre, brand)}
+            phone={phone}
+            variant="solid"
+            className="w-full px-4 py-2.5 text-xs"
+          >
+            Cotizar
+          </WhatsAppButton>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function Lightbox({
+  p,
+  brand,
+  phone,
+  onClose,
+}: {
+  p: Producto;
+  brand: string;
+  phone: string;
+  onClose: () => void;
+}) {
+  const [variant, setVariant] = useState<keyof Producto["img"]>("mostrador");
+
+  const onKey = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    },
+    [onClose]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onKey]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={p.nombre}
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+    >
+      <button
+        type="button"
+        aria-label="Cerrar"
+        onClick={onClose}
+        className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
+      />
+      <div className="relative z-10 grid w-full max-w-4xl overflow-hidden rounded-2xl bg-card shadow-2xl md:grid-cols-2">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Cerrar"
+          className="absolute right-3 top-3 z-20 rounded-full bg-white/90 p-2 text-ink shadow-sm transition-colors hover:bg-white"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <div className="flex flex-col">
+          <div className="aspect-square w-full overflow-hidden bg-sage-50">
+            <Photo src={p.img[variant]} alt={`${p.nombre} — ${variant}`} sizes="(min-width:768px) 50vw, 100vw" />
+          </div>
+          <div className="flex gap-2 p-3">
+            {VARIANT_LABELS.map((v) => (
+              <button
+                key={v.key}
+                type="button"
+                onClick={() => setVariant(v.key)}
+                className={`relative h-16 flex-1 overflow-hidden rounded-lg ring-2 transition ${
+                  variant === v.key ? "ring-sage-500" : "ring-transparent hover:ring-sage-200"
+                }`}
+                aria-label={v.label}
+                aria-pressed={variant === v.key}
+              >
+                <Photo src={p.img[v.key]} alt="" sizes="120px" />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center gap-3 p-6 sm:p-8">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-champagne">
+            {p.categoria} · {p.rosas} rosas blancas
+          </p>
+          <h3 className="font-display text-2xl text-ink sm:text-3xl">{p.nombre}</h3>
+          <p className="text-sm leading-relaxed text-muted">{p.descripcion}</p>
+          <p className="text-sm leading-relaxed text-muted">
+            Coordinamos la entrega contigo, con la calma que este momento merece. Escríbenos y te
+            ayudamos a elegir.
+          </p>
+          <div className="mt-2">
+            <WhatsAppButton
+              message={quoteMessage(p.nombre, brand)}
+              phone={phone}
+              variant="solid"
+              className="w-full sm:w-auto"
+            >
+              Cotizar este arreglo
+            </WhatsAppButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

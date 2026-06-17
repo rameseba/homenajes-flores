@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Paleta "Homenajes Florales" ──────────────────────────────────────────
+     Serena y delicada: papel cálido, carbón suave y un verde eucalipto que
+     evoca calma y respeto, con un dorado champagne para detalles finos. */
+  --color-bone: #fbf9f6; /* fondo general (papel cálido) */
+  --color-card: #ffffff; /* superficies / tarjetas */
+  --color-ink: #33312e; /* texto principal (carbón cálido) */
+  --color-muted: #6b675f; /* texto secundario */
+  --color-hairline: #e8e3db; /* bordes finos */
+  --color-champagne: #c9b79c; /* detalle dorado sutil */
+
+  /* Verde eucalipto (acento primario / CTA) */
+  --color-sage-50: #f3f5f0;
+  --color-sage-100: #e4e8dd;
+  --color-sage-200: #c8d1bc;
+  --color-sage-300: #a6b394;
+  --color-sage-400: #7c8471;
+  --color-sage-500: #5e6650;
+  --color-sage-600: #4b5340;
+  --color-sage-700: #3d4334;
+  --color-sage-800: #33372d;
+  --color-sage-900: #2b2e27;
+
+  /* WhatsApp (botones de cotización) */
+  --color-whats: #25d366;
+  --color-whats-dark: #1da851;
+
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bone);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Aparición suave de secciones al hacer scroll */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Resalte de secciones editables dentro del panel (iframe con ?preview).
+   No afecta al sitio público. */
+[data-preview] [data-section] {
+  cursor: pointer;
+}
+[data-preview] [data-section]:hover {
+  outline: 2px dashed var(--color-sage-400);
+  outline-offset: -4px;
+}
