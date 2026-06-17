@@ -9,7 +9,7 @@ export function Trust() {
   const { confianza } = useContent();
 
   return (
-    <section id="confianza" data-section="confianza" className="scroll-mt-20 bg-sage-50 py-20 sm:py-28">
+    <section id="confianza" data-section="confianza" className="scroll-mt-24 bg-sage-50 py-20 sm:py-28">
       <div className="mx-auto max-w-5xl px-5">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-sage-500">

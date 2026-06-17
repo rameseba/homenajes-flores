@@ -1,14 +1,15 @@
 "use client";
 
-import { Clock, Mail, MessageCircle } from "lucide-react";
+import { Clock, Mail } from "lucide-react";
 import { useContent } from "@/components/content-provider";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 
 export function Contact() {
   const { contacto, identity } = useContent();
 
   return (
-    <section id="contacto" data-section="contacto" className="scroll-mt-20 bg-ink py-20 text-bone sm:py-28">
+    <section id="contacto" data-section="contacto" className="scroll-mt-24 bg-ink py-20 text-bone sm:py-28">
       <div className="mx-auto max-w-3xl px-5 text-center">
         <span className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne">
           Contacto
@@ -33,7 +34,7 @@ export function Contact() {
 
         <dl className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-bone/80 sm:flex-row sm:gap-10">
           <div className="flex items-center gap-2">
-            <MessageCircle className="h-4 w-4 text-champagne" aria-hidden="true" />
+            <WhatsAppIcon className="h-4 w-4 text-champagne" />
             <dt className="sr-only">WhatsApp</dt>
             <dd>{identity.whatsappDisplay}</dd>
           </div>

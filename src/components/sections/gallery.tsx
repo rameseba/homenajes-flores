@@ -8,7 +8,7 @@ export function Gallery() {
   const imgs = galeria.imagenes.slice(0, 4);
 
   return (
-    <section id="galeria" data-section="galeria" className="bg-bone py-20 sm:py-28">
+    <section id="galeria" data-section="galeria" className="scroll-mt-24 bg-bone py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-5">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-sage-500">

@@ -6,10 +6,10 @@
      evoca calma y respeto, con un dorado champagne para detalles finos. */
   --color-bone: #fbf9f6; /* fondo general (papel cálido) */
   --color-card: #ffffff; /* superficies / tarjetas */
-  --color-ink: #33312e; /* texto principal (carbón cálido) */
-  --color-muted: #6b675f; /* texto secundario */
-  --color-hairline: #e8e3db; /* bordes finos */
-  --color-champagne: #c9b79c; /* detalle dorado sutil */
+  --color-ink: #2c2a27; /* texto principal (carbón cálido) */
+  --color-muted: #565049; /* texto secundario (contraste AA sobre hueso) */
+  --color-hairline: #e6e0d7; /* bordes finos */
+  --color-champagne: #b89a6e; /* detalle dorado (más saturado para contraste) */
 
   /* Verde eucalipto (acento primario / CTA) */
   --color-sage-50: #f3f5f0;

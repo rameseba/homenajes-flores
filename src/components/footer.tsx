@@ -1,7 +1,8 @@
 "use client";
 
-import { Mail, MessageCircle } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useContent } from "@/components/content-provider";
+import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { waLink } from "@/lib/site";
 
 export function Footer() {
@@ -47,7 +48,7 @@ export function Footer() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 hover:text-ink"
                   >
-                    <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                    <WhatsAppIcon className="h-4 w-4" />
                     {identity.whatsappDisplay}
                   </a>
                 </li>

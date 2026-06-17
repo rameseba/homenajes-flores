@@ -32,8 +32,7 @@ export function Photo({
       sizes={sizes}
       alt={alt}
       loading={priority ? "eager" : "lazy"}
-      // @ts-expect-error fetchpriority es atributo válido del DOM
-      fetchpriority={priority ? "high" : undefined}
+      fetchPriority={priority ? "high" : undefined}
       decoding="async"
       draggable={false}
       className={`h-full w-full object-cover ${className}`}

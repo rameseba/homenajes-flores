@@ -37,7 +37,8 @@ export type SiteContent = {
   hero: {
     titulo: string;
     subtitulo: string;
-    imagen: string;
+    imagen: string; // poster (primer fotograma / respaldo del video)
+    video: string; // video de fondo (mp4); si está vacío se muestra la imagen
     ctaPrimary: string;
     ctaSecondary: string;
   };
@@ -85,6 +86,7 @@ export const DEFAULT_CONTENT: SiteContent = {
     subtitulo:
       "Arreglos de rosas blancas para velatorios y homenajes. Sobrios, frescos y hechos con respeto, listos para llegar donde más se necesitan.",
     imagen: `${P}/pie-urna-25-mostrador`,
+    video: "/hero-rosas.mp4",
     ctaPrimary: "Cotizar por WhatsApp",
     ctaSecondary: "Ver arreglos",
   },
