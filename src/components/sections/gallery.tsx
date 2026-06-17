@@ -25,8 +25,8 @@ export function Gallery() {
           {imgs.map((src, i) => (
             <figure
               key={src + i}
-              className={`group relative overflow-hidden rounded-2xl bg-sage-100 ring-1 ring-hairline ${
-                i === 0 ? "col-span-2 row-span-2 aspect-square lg:aspect-auto" : "aspect-square"
+              className={`group relative aspect-square overflow-hidden rounded-2xl bg-sage-100 ring-1 ring-hairline ${
+                i === 0 ? "lg:col-span-2 lg:row-span-2 lg:aspect-auto" : ""
               }`}
             >
               <Photo
