@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "brand:assets": "node scripts/make-brand-assets.mjs",
+    "deploy": "npm run build && node scripts/cf-deploy.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.1",
