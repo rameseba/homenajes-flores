@@ -66,7 +66,7 @@ export function Header() {
             src={solid ? identity.logo : "/logo-white.webp"}
             alt={identity.nombre}
             className={`w-auto object-contain transition-all duration-300 ${
-              solid ? "h-14 sm:h-16" : "h-20 drop-shadow-md sm:h-24"
+              solid ? "h-16 sm:h-20" : "h-24 drop-shadow-md sm:h-28"
             }`}
           />
         </a>

@@ -33,12 +33,17 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--color-bone);
+  /* Evita el margen blanco lateral si algún elemento desborda en móvil */
+  overflow-x: hidden;
 }
 
 body {
   background: var(--color-bone);
   color: var(--color-ink);
   font-family: var(--font-sans);
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* Respeta a quien prefiere menos movimiento */
