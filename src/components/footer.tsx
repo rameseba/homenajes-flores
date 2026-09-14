@@ -60,7 +60,17 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-hairline pt-6 text-xs text-muted sm:flex-row">
-          <p>© {year} {footer.copyright}. Todos los derechos reservados.</p>
+          <p>
+            © {year} {footer.copyright}. Todos los derechos reservados. · Diseñado por{" "}
+            <a
+              href="https://rameseba.com"
+              target="_blank"
+              rel="noopener"
+              className="underline underline-offset-2 transition-colors hover:text-sage-600"
+            >
+              rameseba.com
+            </a>
+          </p>
           <a href="/editar-web" className="text-muted/70 transition-colors hover:text-sage-600">
             Administrar sitio
           </a>
