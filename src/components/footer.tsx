@@ -33,7 +33,7 @@ export function Footer() {
                 <li><a href="#contacto" className="hover:text-ink">Contacto</a></li>
               </ul>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="font-semibold text-ink">Contacto</p>
               <ul className="mt-3 space-y-2 text-muted">
                 <li>
@@ -48,9 +48,9 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a href={`mailto:${identity.email}`} className="inline-flex items-center gap-1.5 hover:text-ink">
-                    <Mail className="h-4 w-4" aria-hidden="true" />
-                    {identity.email}
+                  <a href={`mailto:${identity.email}`} className="inline-flex max-w-full items-center gap-1.5 hover:text-ink">
+                    <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
+                    <span className="min-w-0 [overflow-wrap:anywhere]">{identity.email}</span>
                   </a>
                 </li>
                 <li className="text-muted">{identity.ciudad}</li>
